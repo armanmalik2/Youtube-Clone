@@ -1,6 +1,7 @@
 import { User } from 'lucide-react';
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
   let isOpen = useSelector((state) => state.sideBar.isOpen);
@@ -9,7 +10,7 @@ const SideBar = () => {
       <div>
         <div className={`${isOpen?"":"hidden"} w-52 text-lg font-semibold`}>
             <ul>
-                <li className='w-48 h-10 pl-16 content-center rounded-lg  hover:bg-gray-200' >Home</li>
+                <li className='w-48 h-10 pl-16 content-center rounded-lg  hover:bg-gray-200' ><Link to={'/Watch'}> Home</Link></li>
                 <li className='w-48 h-10 pl-16 content-center rounded-lg  hover:bg-gray-200' >Shorts</li>
                 <li className='w-48 h-10 pl-16 content-center rounded-lg  hover:bg-gray-200' >Subscription</li>
                 <hr />

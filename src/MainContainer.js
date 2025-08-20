@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import SuggestionMenu from './SuggestionMenu';
-import { User2Icon, UserCircle2 } from 'lucide-react';
+import { Link2, User2Icon, UserCircle2 } from 'lucide-react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const YT_API_KEY = "AIzaSyC5iy6fosf1tLLhZq_PqmDm3EfYI2QoaBU";
                  // AIzaSyC5iy6fosf1tLLhZq_PqmDm3EfYI2QoaBU
+const YT_API_KEY2 = "AIzaSyCTOwhH-mAdA6cDzbWh11OI5ymOXX5_MFo"
+                 // AIzaSyCTOwhH-mAdA6cDzbWh11OI5ymOXX5_MFo
 let query = "doraemon";
               // https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=python&type=video&regionCode=IN&key=YOUR_API_KEY
               //const preData = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResults}&q=${encodeURIComponent(query)}&type=video&key=${YT_API_KEY}`
               
               
-              const VideoCard = (props) => {
-                return(
+const VideoCard = (props) => {
+  return(
+    <Link to={'/Watch/'+props?.id?.videoId}>
     <div className='h-[410px] shadow-md m-4 mt-8 rounded-2xl'>
       <div className=''>
         <img className='h-72 rounded-2xl' src={props?.snippet?.thumbnails?.high?.url} alt='video'/>
@@ -20,35 +24,37 @@ let query = "doraemon";
         <div className='mr-2'>{props?.snippet?.publishTime}</div>
       </div>
     </div>
+    </Link>
   )
 }
 
 
 
 const MainContainer = () => {
-  const preData = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=49&q=${query}&type=video&key=${YT_API_KEY}`
+
+  const [queriData, setQueriData] = useState(query)
   
-  const [queriData, setQueriData] = useState()
+  const preData = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=49&q=${query}&type=v ideo&key=${YT_API_KEY2}`
   query = useSelector((state) => state.searching.search);
-  useEffect(() => {
-  setQueriData(query);
-}, [query]);
   console.log(query)
-
+  
   const [videoData, setVideoData] = useState(null);
-
+  
   const Video = () => {
-   return (
-    fetch(preData)
-    .then(res => res.json())
-    .then(data => setVideoData(data))
-   );
+    return (
+      fetch(preData)
+      .then(res => res.json())
+      .then(data => setVideoData(data))
+      
+    );
   };
-
+  
+  
   useEffect(() => {
     Video();
-  }, [query]);
-  
+    console.log(Video())
+  setQueriData(query);
+}, [query]);
   
 
 
