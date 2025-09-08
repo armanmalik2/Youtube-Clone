@@ -2,7 +2,7 @@ import React from 'react'
 
 const SuggestionMenu = () => {
   return (
-    <div>
+    <div className='sm'>
       <div>
         <div >
             <button className='bg-gray-200 pl-2 pr-2 active:scale-95 rounded-lg ml-2 mr-2 h-10' >All</button>

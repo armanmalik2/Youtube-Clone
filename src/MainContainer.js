@@ -18,7 +18,7 @@ const VideoCard = (props) => {
     <Link to={'/Watch/'+props?.id?.videoId}>
     <div className='h-[410px] shadow-md m-4 mt-8 rounded-2xl'>
       <div className=''>
-        <img className='h-72 rounded-2xl' src={props?.snippet?.thumbnails?.high?.url} alt='video'/>
+        <img className='videoheight h-72 rounded-2xl' src={props?.snippet?.thumbnails?.high?.url} alt='video'/>
         <div className='w-80 h-14 overflow-hidden font-semibold text-lg'>{props?.snippet?.title}</div>
         <div className='ml-1 font-medium text-gray-700 flex'><UserCircle2 className='text-white bg-black rounded-full mr-2'/>{props?.snippet?.channelTitle}</div>
         <div className='mr-2'>{props?.snippet?.publishTime}</div>
@@ -31,48 +31,57 @@ const VideoCard = (props) => {
 
 
 const MainContainer = () => {
-
-  const [queriData, setQueriData] = useState(query)
   
-  const preData = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=49&q=${query}&type=v ideo&key=${YT_API_KEY2}`
   query = useSelector((state) => state.searching.search);
+
+  const preData = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=49&q=${query}&type=video&key=${YT_API_KEY2}`
+  
   console.log(query)
   
   const [videoData, setVideoData] = useState(null);
   
-  const Video = () => {
-    return (
-      fetch(preData)
-      .then(res => res.json())
-      .then(data => setVideoData(data))
-      
-    );
-  };
-  
-  
-  useEffect(() => {
+
+   useEffect(() => {
+
+    const Video = async () => {
+      try {
+        const res = await fetch(preData);
+        const data = await res.json();
+        await setVideoData(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
     Video();
-    console.log(Video())
-  setQueriData(query);
-}, [query]);
+  }, [query]);  // refetch when query changes
+
+  
   
 
 
   return (
-    !videoData ? <div>Loading</div>:
+    
     <div className=''>
         <SuggestionMenu />
         
         <div className='flex flex-wrap'>
-          {videoData?.items.map(item => <VideoCard {...item} key={item?.id?.videoId} />)}
+          {!videoData ? <div>Loading</div>:videoData?.items?.map(item => <VideoCard {...item} key={item?.id?.videoId} />)}
           </div>
           
         <div className=''>
           <div className='flex flex-wrap'>
-            <div className='p-5 h-96 w-fit bg-black m-8'>
+            
+          <div className='p-5 test h-96 w-fit bg-black m-8'>
               <div className='w-80 h-64 bg-yellow-50 '></div>
             </div>
-          <div className='p-5 h-96 w-fit bg-black m-8'>
+            <div className='p-5 test h-96 w-fit bg-black m-8'>
+              <div className='w-80 h-64 bg-yellow-50 '></div>
+            </div>
+            <div className='p-5 test h-96 w-fit bg-black m-8'>
+              <div className='w-80 h-64 bg-yellow-50 '></div>
+            </div>
+            <div className='p-5 test h-96 w-fit bg-black m-8'>
               <div className='w-80 h-64 bg-yellow-50 '></div>
             </div>
           <div className='p-5 h-96 w-fit bg-black m-8'>

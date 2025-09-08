@@ -8,7 +8,7 @@ const SideBar = () => {
   return (
     <div>
       <div>
-        <div className={`${isOpen?"":"hidden"} w-52 text-lg font-semibold`}>
+        <div className={`${isOpen?"":"hidden"} w-52 text-lg font-semibold sidebar`}>
             <ul>
                 <li className='w-48 h-10 pl-16 content-center rounded-lg  hover:bg-gray-200' ><Link to={'/Watch'}> Home</Link></li>
                 <li className='w-48 h-10 pl-16 content-center rounded-lg  hover:bg-gray-200' >Shorts</li>

@@ -16,3 +16,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@media (max-width: 450px){
+  .test{
+    width: 95vw;
+  }
+  .sidebar{
+    display: none;
+  }
+  .Header>div>div>button , .Header>div>div>input{
+    display: none;
+  }
+  .Header>div>button{
+    border-radius: 50px;
+    width: 40px;
+  }
+  .Header>div>div{
+    width: 40px;
+  }
+  .Header>div>div{
+    width: 100px;
+  }
+  }
+
+  
+@media (max-width: 600px){
+  .mobile{
+  }
+}
