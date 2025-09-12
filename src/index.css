@@ -17,29 +17,44 @@ code {
     monospace;
 }
 @media (max-width: 450px){
-  .test{
-    width: 95vw;
+  .mic{
+    display: none;
   }
   .sidebar{
     display: none;
   }
+  .Header{
+    width: 450px;
+  }
   .Header>div>div>button , .Header>div>div>input{
     display: none;
   }
-  .Header>div>button{
+  .round2{
     border-radius: 50px;
     width: 40px;
+    display: flex;
   }
-  .Header>div>div{
-    width: 40px;
+  .video>div>img{
+    height: fit-content;
   }
-  .Header>div>div{
-    width: 100px;
+  .search>div>input{
+    display: block;
+  }
+  .video{
+    height: 450px;
+  }
+  .suggestionMenu>div{
+    width: 450px;
+  }
+  iframe{
+    width: 450px;
+    height: 300px;
   }
   }
 
-  
-@media (max-width: 600px){
-  .mobile{
+  .flexcheck{
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
   }
-}
+  
